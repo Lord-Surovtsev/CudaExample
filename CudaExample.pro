@@ -10,8 +10,6 @@ TEMPLATE = app
 # C++ flags
 QMAKE_CXXFLAGS_RELEASE = -o3
 
-
-
 # Path to cuda toolkit install
 CUDA_DIR      = /usr/local/cuda
 # Path to header and libs files

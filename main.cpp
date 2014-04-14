@@ -5,8 +5,6 @@ using namespace std;
 
 #include <cuda_runtime.h>
 
-#include "code_cuda.cu"
-
 extern "C"
 cudaError_t cuda_main();
 
