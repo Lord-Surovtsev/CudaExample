@@ -15,9 +15,6 @@ void kernelFunction()
 extern "C"
 cudaError_t cuda_main()
 {
-    cout << "cuda_main" << endl;
-
-    /*
     //generate 16M random numbers on the host
     thrust::host_vector<float> h_vec(1 << 24);
     thrust::generate(h_vec.begin(), h_vec.end(), rand);
@@ -32,5 +29,4 @@ cudaError_t cuda_main()
     thrust::copy(d_vec.begin(), d_vec.end(), h_vec.begin());
 
     return cudaGetLastError();
-    */
 }
