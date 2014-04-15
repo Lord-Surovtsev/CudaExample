@@ -11,22 +11,27 @@ GCC = g++
 
 NVCC = nvcc
 
-CFLAGS = -c -Wall
+#GCC_FLAGS = -c -Wall
 
-CUDA_PATH ?= "/usr/local/cuda-6.0"
+CUDA_PATH ?= "/usr/local/cuda-5.5"
 
 NVCC := $(CUDA_PATH)/bin/nvcc -ccbin $(GCC)
 
-CUDAFLAGS = -gencode arch=compute_20,code=sm_20
+CUDA_FLAGS = -gencode arch=compute_30,code=sm_30
+
+CUDA_INCLUDES = /usr/local/cuda-5.5/lib64
 
 all: program
 
 
-program: main.o
-	$(NVCC) main.o -L/usr/local/cuda/lib64 -lcuda -lcudart -o program
+program: cudacode.o main.o
+	$(NVCC) cudacode.o main.o -o program
 
 main.o:  main.cpp
-	$(NVCC) $(CUDAFLAGS) main.cpp
+	$(GCC) -c main.cpp -o main.o
+
+cudacode.o: cudacode.cu
+	$(NVCC) -I$(CUDA_INCLUDES) $(CUDA_FLAGS) -c cudacode.cu -o cudacode.o
 
 clean:
-	rm -rf *.o program
+	rm -rf *.o *.co program
