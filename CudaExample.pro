@@ -1,17 +1,12 @@
-QT += core
-QT += qui
-
-TARGET = QtCuda
-CONFIG += console
-CONFIG -= app_bundle
-
-TEMPLATE = app
+SOURCES += \
+    main.cpp \
+    cudaCode.cu
 
 # C++ flags
 QMAKE_CXXFLAGS_RELEASE = -o3
 
 # Path to cuda toolkit install
-CUDA_DIR      = /usr/local/cuda
+CUDA_DIR      = /usr/local/cuda-5.5
 # Path to header and libs files
 INCLUDEPATH  += $$CUDA_DIR/include
 QMAKE_LIBDIR += $$CUDA_DIR/lib64     # Note I'm using a 64 bits Operating system
@@ -39,12 +34,9 @@ cuda.output = ${OBJECTS_DIR}${QMAKE_FILE_BASE}_cuda.o
 # Tell Qt that we want add more stuff to the Makefile
 QMAKE_EXTRA_COMPILERS += cuda
 
-SOURCES += \
-    main.cpp \
-    code_cuda.cu
-
 SOURCES -= \
-   code_cuda.cu
+    cudaCode.cu
 
 CUDA_SOURCES += \
-    code_cuda.cu
+    cudaCode.cu
+
